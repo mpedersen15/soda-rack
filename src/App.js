@@ -1,39 +1,35 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 // import logo from './logo.svg';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import Flavor from './components/Flavor/Flavor';
 import FlavorList from './components/FlavorList/FlavorList';
-import Station from './components/Station/Station';
 import StationList from './components/StationList/StationList';
+import StationEditList from './components/EditStation/EditStation';
+// import Main from './components/Main/Main';
+import { store } from './store';
+
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <MuiThemeProvider>
-          {/* <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p> */}
+      <Provider store={store}>
+        <Router>
+          <MuiThemeProvider>
+            <div>
+              <Link to={'/'}>Stations</Link>
+              <Link to={'/flavors'}>Flavors</Link>
 
-          {/* <Flavor />
-          <FlavorList />
-          <Station />
-          <StationList /> */}
+              <Route exact path="/" component={StationList}/>
+              <Route path="/flavors" component={FlavorList}/>
+              <Route path="/stations/edit/:id" component={StationEditList}/>
 
-          <Link to={'/'}>Stations</Link>
-          <Link to={'/flavors'}>Flavors</Link>
-
-          <Route exact path="/" component={StationList}/>
-          <Route path="/flavors" render={() => (<FlavorList flavors={['Coke', 'Sprite']}/>)}/>
-        </MuiThemeProvider>
-      </Router>
+            </div>
+          </MuiThemeProvider>
+        </Router>
+      </Provider>
     );
   }
 }

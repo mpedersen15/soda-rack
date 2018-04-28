@@ -6,7 +6,7 @@ class Flavor extends Component {
     render() {
         return (
             <div className="flavor">
-                <RaisedButton label={this.props.flavor} />
+                <RaisedButton label={this.props.flavor.name} />
             </div>
         );
     }
