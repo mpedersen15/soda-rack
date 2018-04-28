@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { updateStation } from '../../actions';
 
 class EditStation extends Component {
@@ -41,6 +42,7 @@ class EditStation extends Component {
                 <ul>
                     {renderUnavailableFlavors()}
                 </ul>
+                <Link to="/">Done</Link>
             </div>
         );
     }

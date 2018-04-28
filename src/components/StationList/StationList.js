@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
+
 import Station from '../Station/Station';
 import { addStation } from '../../actions';
+
+const style = {
+    padding: 20
+}
 
 class StationList extends Component {
     handleSubmit(e) {
@@ -26,8 +32,10 @@ class StationList extends Component {
         };
 
         return (
-            <div>
+            <div style={style} zDepth={3}>
                 <h1>Stations</h1>
+                
+
 
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <input ref="newStation" type="text" placeholder="New station name"/>
