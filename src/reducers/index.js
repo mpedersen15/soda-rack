@@ -9,17 +9,23 @@ const initialFlavors = [
     {
         id: 2,
         name: 'Pepsi'
+    },
+    {
+        id: 3,
+        name: 'Mountain Dew'
     }
 ];
 
 const initialStations = [
     {
         id: 1,
-        name: 'Station 1'
+        name: 'Station 1',
+        flavors: [1, 2]
     },
     {
         id: 2,
-        name: 'Station 2'
+        name: 'Station 2',
+        flavors: []
     }
 ]
 
@@ -33,19 +39,24 @@ const flavorsReducer = (state = initialFlavors, action) => {
 }
 
 const stationsReducer = (state = initialStations, action) => {
+    console.log('in stations reducer', action);
     switch(action.type) {
         case ADD_STATION:
             return [...state, action.station];
         case UPDATE_STATION:
-            return  state.map((station, index) => {
-                    if (index === action.index) {
-                        return {
-                            ...station,
-                            flavors: [...station.flavors, action.flavor]
-                        };
-                    }
-                    return station;
-                });
+            console.log('In update station', action);
+            const newStations = state.map((station, index) => {
+                if (station.id === action.stationId) {
+                    return {
+                        ...station,
+                        flavors: [...station.flavors, action.flavorId]
+                    };
+                }
+                return station;
+            });
+
+            console.log('New Stations', newStations);
+            return newStations;
         default:
             return state;
     }

@@ -6,9 +6,22 @@ class Station extends Component {
         console.log('Trying to edit station with id: ', this.props.station.id);
     }
     render() {
+        const renderFlavors = () => {
+            const { flavors } = this.props.station;
+            if (flavors.length) {
+                return flavors.map((flavor, index) => {
+                    return <li key={index}>{flavor.name}</li>
+                });
+            }
+            
+        }
+
         return (
             <div>
-               {this.props.station.name}
+               <p>{this.props.station.name}</p>
+               <ul>
+                   {renderFlavors()}
+               </ul>
                <Link to={`/stations/edit/${this.props.station.id}`}>Edit</Link>
             </div>
         );

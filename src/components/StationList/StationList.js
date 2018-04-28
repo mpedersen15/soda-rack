@@ -11,7 +11,7 @@ class StationList extends Component {
 
         const newStation = this.refs.newStation.value;
         this.refs.newStation.value = '';
-        
+
         if (newStation.length > 0) {
             dispatch(addStation({
                 id: this.props.stations.length + 1,
@@ -20,7 +20,7 @@ class StationList extends Component {
         }
     }
     render() {
-
+        console.log('Props: ', this.props);
         const renderStations = () => {
             return this.props.stations.map(item => (<Station key={item.id} station={item}/>))
         };
@@ -41,8 +41,20 @@ class StationList extends Component {
 
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
-        stations: state.stations
+        stations: state.stations.map(station => {
+            return {
+                ...station,
+                flavors: station.flavors.map(flavor => {
+                    console.log('Flavor to map', flavor);
+                    const fullFlavor = state.flavors.find(f => f.id === flavor);
+                    console.log('Full Flavor', fullFlavor);
+                    console.log('Full Flavor name', fullFlavor.name);
+                    return fullFlavor;
+                })
+            }
+        })
     }
 };
 

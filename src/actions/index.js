@@ -17,8 +17,9 @@ export function addStation(station) {
 }
 
 export function updateStation(stationId, flavorId) {
+    console.log('Updating station', stationId, ' with ', flavorId);
     return {
-        type: ADD_STATION,
+        type: UPDATE_STATION,
         stationId,
         flavorId
     };
