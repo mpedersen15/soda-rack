@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './Flavor.css';
-import RaisedButton from 'material-ui/RaisedButton';
+import { ListItem } from 'material-ui/List';
+import MapsLocalDrink from 'material-ui/svg-icons/maps/local-drink';
 
 class Flavor extends Component {
     render() {
         return (
             <div className="flavor">
-                <RaisedButton label={this.props.flavor.name} />
+                <ListItem primaryText={this.props.flavor.name} leftIcon={<MapsLocalDrink />} />
             </div>
         );
     }

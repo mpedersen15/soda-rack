@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card'; 
+import {Card, CardHeader, CardText} from 'material-ui/Card'; 
 import { List, ListItem } from 'material-ui/List';
 import FlatButton from 'material-ui/FlatButton';
 import Subheader from 'material-ui/Subheader';
@@ -48,7 +48,7 @@ class Station extends Component {
 
                 <FlatButton
                 style={style.button}
-                children={<Link to={`/stations/edit/${this.props.station.id}`}><EditorModeEdit /></Link>}
+                children={<Link key={this.props.station.id} to={`/stations/edit/${this.props.station.id}`}><EditorModeEdit /></Link>}
                 />
             </Card>
         );

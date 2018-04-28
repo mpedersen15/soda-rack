@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Paper from 'material-ui/Paper';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Station from '../Station/Station';
+import TextField from 'material-ui/TextField';
 import { addStation } from '../../actions';
+import { RaisedButton } from 'material-ui';
 
 const style = {
     container: {
@@ -11,16 +12,18 @@ const style = {
     },
     card: {
         marginBottom: 20
+    },
+    input: {
+        display: 'block'
     }
-}
+};
 
 class StationList extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
         const { dispatch } = this.props;
-
-        const newStation = this.refs.newStation.value;
+        const newStation = this.refs.newStation.getValue();
         this.refs.newStation.value = '';
 
         if (newStation.length > 0) {
@@ -32,20 +35,19 @@ class StationList extends Component {
         }
     }
     render() {
-        console.log('Props: ', this.props);
         const renderStations = () => {
             return this.props.stations.map(item => (<Station key={item.id} station={item}/>))
         };
 
         return (
-            <div style={style.container} zDepth={3}>
+            <div style={style.container}>
                 <h1>Stations</h1>
                 <Card style={style.card}>
                     <CardHeader title="Create a new station"/>
                     <CardText>
-                    <form onSubmit={this.handleSubmit.bind(this)}>
-                        <input ref="newStation" type="text" placeholder="New station name"/>
-                        <button>Add Station</button>
+                    <form>
+                        <TextField style={style.input} ref="newStation" hintText="New station name" />
+                        <RaisedButton onClick={this.handleSubmit.bind(this)}>AddStation</RaisedButton>
                     </form>
                     </CardText>
                 </Card>
@@ -58,18 +60,11 @@ class StationList extends Component {
 
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         stations: state.stations.map(station => {
             return {
                 ...station,
-                flavors: station.flavors.map(flavor => {
-                    console.log('Flavor to map', flavor);
-                    const fullFlavor = state.flavors.find(f => f.id === flavor);
-                    console.log('Full Flavor', fullFlavor);
-                    console.log('Full Flavor name', fullFlavor.name);
-                    return fullFlavor;
-                })
+                flavors: station.flavors.map(flavor => state.flavors.find(f => f.id === flavor))
             }
         })
     }

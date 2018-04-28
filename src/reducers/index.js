@@ -39,12 +39,10 @@ const flavorsReducer = (state = initialFlavors, action) => {
 }
 
 const stationsReducer = (state = initialStations, action) => {
-    console.log('in stations reducer', action);
     switch(action.type) {
         case ADD_STATION:
             return [...state, action.station];
         case UPDATE_STATION:
-            console.log('In update station', action);
             const newStations = state.map((station, index) => {
                 if (station.id === action.stationId) {
                     return {
@@ -55,7 +53,6 @@ const stationsReducer = (state = initialStations, action) => {
                 return station;
             });
 
-            console.log('New Stations', newStations);
             return newStations;
         default:
             return state;
