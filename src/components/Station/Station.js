@@ -47,21 +47,11 @@ class Station extends Component {
                 </CardText>
 
                 <FlatButton
-                icon={<EditorModeEdit />}
                 style={style.button}
+                children={<Link to={`/stations/edit/${this.props.station.id}`}><EditorModeEdit /></Link>}
                 />
             </Card>
         );
-
-        /* return (
-            <div>
-               <p>{this.props.station.name}</p>
-               <ul>
-                   {renderFlavors()}
-               </ul>
-               <Link to={`/stations/edit/${this.props.station.id}`}>Edit</Link>
-            </div>
-        ); */
     }
 }
 
