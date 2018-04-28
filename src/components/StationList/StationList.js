@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
-
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Station from '../Station/Station';
 import { addStation } from '../../actions';
 
 const style = {
-    padding: 20
+    container: {
+        padding: 20
+    },
+    card: {
+        marginBottom: 20
+    }
 }
 
 class StationList extends Component {
@@ -21,7 +26,8 @@ class StationList extends Component {
         if (newStation.length > 0) {
             dispatch(addStation({
                 id: this.props.stations.length + 1,
-                name: newStation
+                name: newStation,
+                flavors: []
             }));
         }
     }
@@ -32,15 +38,18 @@ class StationList extends Component {
         };
 
         return (
-            <div style={style} zDepth={3}>
+            <div style={style.container} zDepth={3}>
                 <h1>Stations</h1>
+                <Card style={style.card}>
+                    <CardHeader title="Create a new station"/>
+                    <CardText>
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <input ref="newStation" type="text" placeholder="New station name"/>
+                        <button>Add Station</button>
+                    </form>
+                    </CardText>
+                </Card>
                 
-
-
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input ref="newStation" type="text" placeholder="New station name"/>
-                    <button>Add Station</button>
-                </form>
                 {renderStations()}
             </div>
         );
