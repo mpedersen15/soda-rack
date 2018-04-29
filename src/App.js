@@ -5,8 +5,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import StationEditList from './components/EditStation/EditStation';
-import Main from './components/Main/Main';
+import StationEditList from './containers/EditStation';
+import Main from './components/Main';
 import { store } from './store';
 
 

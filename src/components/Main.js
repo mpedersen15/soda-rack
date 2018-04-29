@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import Paper from 'material-ui/Paper';
 
-import StationList from '../StationList/StationList';
-import FlavorList from '../FlavorList/FlavorList';
-
+import FlavorContainer from '../containers/FlavorContainer';
+import StationContainer from '../containers/StationContainer';
 const style = {
     paper: {
         maxWidth: 400,
@@ -18,10 +17,10 @@ class Main extends Component {
             <Paper style={style.paper} zDepth={3}>
                 <Tabs>
                     <Tab label="Refueling Stations" >
-                        <StationList/>
+                        <StationContainer />
                     </Tab>
                     <Tab label="Soda Flavors" >
-                        <FlavorList />
+                        <FlavorContainer />
                     </Tab>
                 </Tabs>
             </Paper>

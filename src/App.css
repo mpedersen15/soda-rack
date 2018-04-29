@@ -1,11 +1,15 @@
-.card-text {
-  /* background-color: red; */
-}
-
 .tab-container {
   padding: 20px !important;
 }
 
 .card-content {
   padding: 0 16px !important;
+}
+
+.text-input {
+  display: block !important;
+}
+
+.search-icon {
+  margin-top: 27px !important;
 }

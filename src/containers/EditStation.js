@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { updateStation } from '../../actions';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
 import Subheader from 'material-ui/Subheader';
@@ -11,6 +10,8 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
+import { updateStation } from '../actions';
+import FlavorList from '../components/FlavorList';
 const style = {
     paper: {
         maxWidth: 400,
@@ -51,8 +52,8 @@ class EditStation extends Component {
         const renderAvailableFlavors = () => {
             if (!station.flavors.length) { return <p>There are no flavors at this station. Add flavors below or visit the Soda Flavors tab to add new flavors.</p>}
 
-
-            return station.flavors.map((flavor, i) => (<ListItem key={'avail-'+i} disabled={true} primaryText={flavor.name} leftIcon={<MapsLocalDrink />} />));
+            return <FlavorList showFilter={false} flavors={station.flavors} />
+            // return station.flavors.map((flavor, i) => (<ListItem key={'avail-'+i} disabled={true} primaryText={flavor.name} leftIcon={<MapsLocalDrink />} />));
             // return station.flavors.map((flavor, i) => (<ListItem key={i}>{flavor.name} </ListItem>));
         }
 

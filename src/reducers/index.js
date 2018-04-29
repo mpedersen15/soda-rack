@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { ADD_FLAVOR, ADD_STATION, UPDATE_STATION } from "../actions";
 
 const initialFlavors = [
-    /* {
+    {
         id: 1,
         name: 'Coke'
     },
@@ -13,7 +13,7 @@ const initialFlavors = [
     {
         id: 3,
         name: 'Mountain Dew'
-    } */
+    }
 ];
 
 const initialStations = [
