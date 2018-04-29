@@ -4,7 +4,7 @@ import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Station from '../Station/Station';
 import TextField from 'material-ui/TextField';
 import { addStation } from '../../actions';
-import { RaisedButton } from 'material-ui';
+import { FlatButton } from 'material-ui';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 import { ListItem } from 'material-ui/List';
 
@@ -31,23 +31,29 @@ class StationList extends Component {
         super(props);
 
         this.state = {
+            inputValue: '',
             filterValue: ''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     handleFilterChange(e) {
         this.setState({ filterValue: e.target.value });
     }
 
+    handleInputChange(e) {
+        this.setState({ inputValue: e.target.value });
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
         const { dispatch } = this.props;
-        const newStation = this.refs.newStation.getValue();
-        this.refs.newStation.value = '';
+        const newStation = this.state.inputValue;
+        this.setState({ inputValue: '' });
 
         if (newStation.length > 0) {
             dispatch(addStation({
@@ -59,27 +65,34 @@ class StationList extends Component {
     }
     render() {
         const renderStations = () => {
-            return this.props.stations.filter(station => {
-                if (!this.state.filterValue) { return true; }
-
-                return station.flavors.some(flavor => flavor.name.toLowerCase().includes(this.state.filterValue.toLowerCase()));
-
-            }).map(item => (<Station key={item.id} station={item}/>))
+            if (this.props.stations.length) {
+                return [
+                    <ListItem key={'search-filter'}style={style.searchItem} disabled={true} leftIcon={<ActionSearch style={style.icon}/>} children={<TextField key='filter-input' style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter stations by soda flavor" />}/>,
+                    ...this.props.stations.filter(station => {
+                        if (!this.state.filterValue) { return true; }
+        
+                        return station.flavors.some(flavor => flavor.name.toLowerCase().includes(this.state.filterValue.toLowerCase()));
+        
+                    }).map(item => (<Station key={item.id} station={item}/>))
+                ];   
+            } else {
+                return (<p>There no Refueling Stations created. Use the form above to create the first!</p>);
+            }
+            
         };
 
         return (
-            <div style={style.container}>
-                <h1>Refueling Stations</h1>
+            <div className="tab-container">
                 <Card style={style.card}>
-                    <CardHeader title="Create a new Refueling Station"/>
-                    <CardText>
-                    <form>
-                        <TextField style={style.input} ref="newStation" hintText="New station name" />
-                        <RaisedButton onClick={this.handleSubmit}>Add Station</RaisedButton>
+                    <CardHeader title="Add a new Refueling Station"/>
+                    <CardText className="card-content">
+                    <form onSubmit={this.handleSubmit}>
+                        <TextField style={style.input} value={this.state.inputValue} onChange={this.handleInputChange} hintText="New station name" />
+                        <FlatButton type="submit">Add Station</FlatButton>
                     </form>
                     </CardText>
                 </Card>
-                <ListItem style={style.searchItem} disabled={true} leftIcon={<ActionSearch style={style.icon}/>} children={<TextField key='filter-input' style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter stations by soda flavor" />}/>
+                {/* <ListItem style={style.searchItem} disabled={true} leftIcon={<ActionSearch style={style.icon}/>} children={<TextField key='filter-input' style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter stations by soda flavor" />}/> */}
                 {renderStations()}
             </div>
         );

@@ -7,7 +7,7 @@ import FlavorList from '../FlavorList/FlavorList';
 
 const style = {
     paper: {
-        maxWidth: 700,
+        maxWidth: 400,
         margin: '20px auto'
     }
 };

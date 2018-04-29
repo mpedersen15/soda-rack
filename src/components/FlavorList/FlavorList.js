@@ -5,7 +5,7 @@ import Flavor from '../Flavor/Flavor';
 import { addFlavor } from '../../actions'
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import { List, ListItem } from 'material-ui/List';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 
@@ -68,26 +68,26 @@ class FlavorList extends Component {
 
     render() {
         const renderFlavors = () => {
-            return this.props.flavors.filter(flavor => flavor.name.includes(this.state.filterValue)).map(item => (<Flavor key={item.id} flavor={item}/>))
+            return this.props.flavors.filter(flavor => flavor.name.toLowerCase().includes(this.state.filterValue.toLowerCase())).map(item => (<Flavor key={item.id} flavor={item}/>))
         };
 
         return (
-            <div style={style.container}>
-                <h1>Soda Flavors</h1>
+            <div className="tab-container">
+                {/* <h1>Soda Flavors</h1> */}
 
                 <Card style={style.card}>
                     <CardHeader title="Add a new flavor"/>
-                    <CardText>
+                    <CardText className="card-content">
                         <form onSubmit={this.handleSubmit}>
                             <TextField style={style.input} value={this.state.inputValue} onChange={this.handleInputChange} hintText="Add a new flavor" />
-                            <RaisedButton type="submit">Add flavor</RaisedButton>
+                            <FlatButton type="submit">Add flavor</FlatButton>
                         </form>
                     </CardText>
                 </Card>
                 
                 <Card>
                     <CardHeader title="Available flavors"/>
-                    <CardText style={style.cardText}>
+                    <CardText className="card-content">
                         <List>
                             <ListItem style={style.searchItem} disabled={true} leftIcon={<ActionSearch style={style.icon}/>} children={<TextField key='filter-input' style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter soda by name" />}/>                        
                             {renderFlavors()}
