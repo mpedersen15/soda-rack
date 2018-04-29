@@ -79,7 +79,7 @@ class StationList extends Component {
                     </form>
                     </CardText>
                 </Card>
-                <ListItem style={style.searchItem} disabled={true} leftIcon={<ActionSearch style={style.icon}/>} children={<TextField style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter stations by soda flavor" />}/>
+                <ListItem style={style.searchItem} disabled={true} leftIcon={<ActionSearch style={style.icon}/>} children={<TextField key='filter-input' style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter stations by soda flavor" />}/>
                 {renderStations()}
             </div>
         );

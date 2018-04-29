@@ -5,12 +5,6 @@ import { updateStation } from '../../actions';
 
 class EditStation extends Component {
 
-    /* addMountainDew() {
-        const { dispatch } = this.props;
-
-        dispatch(updateStation(this.props.station.id, 3));
-    } */
-
     handleAdd(flavor) {
         const { dispatch } = this.props;
 

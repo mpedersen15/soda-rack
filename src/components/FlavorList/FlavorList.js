@@ -89,10 +89,7 @@ class FlavorList extends Component {
                     <CardHeader title="Available flavors"/>
                     <CardText style={style.cardText}>
                         <List>
-                        <ListItem style={style.searchItem} disabled={true} leftIcon={<ActionSearch style={style.icon}/>} children={<TextField style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter soda by name" />}/>
-
-                        {/* <TextField style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter soda by name" /> */}
-                        
+                            <ListItem style={style.searchItem} disabled={true} leftIcon={<ActionSearch style={style.icon}/>} children={<TextField key='filter-input' style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter soda by name" />}/>                        
                             {renderFlavors()}
                         </List>
                     </CardText>
