@@ -6,7 +6,7 @@ class Flavor extends Component {
     render() {
         return (
             <div className="flavor">
-                <ListItem primaryText={this.props.flavor.name} leftIcon={<MapsLocalDrink />} />
+                <ListItem disabled={true} primaryText={this.props.flavor.name} leftIcon={<MapsLocalDrink />} />
             </div>
         );
     }

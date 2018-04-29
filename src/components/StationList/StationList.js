@@ -5,6 +5,8 @@ import Station from '../Station/Station';
 import TextField from 'material-ui/TextField';
 import { addStation } from '../../actions';
 import { RaisedButton } from 'material-ui';
+import ActionSearch from 'material-ui/svg-icons/action/search';
+import { ListItem } from 'material-ui/List';
 
 const style = {
     container: {
@@ -15,10 +17,31 @@ const style = {
     },
     input: {
         display: 'block'
+    },
+    icon: {
+        marginTop: 30
+    },
+    searchItem: {
+        padding: '16px 16px 16px 50px'
     }
 };
 
 class StationList extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            filterValue: ''
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFilterChange = this.handleFilterChange.bind(this);
+    }
+
+    handleFilterChange(e) {
+        this.setState({ filterValue: e.target.value });
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
@@ -36,22 +59,27 @@ class StationList extends Component {
     }
     render() {
         const renderStations = () => {
-            return this.props.stations.map(item => (<Station key={item.id} station={item}/>))
+            return this.props.stations.filter(station => {
+                if (!this.state.filterValue) { return true; }
+
+                return station.flavors.some(flavor => flavor.name.toLowerCase().includes(this.state.filterValue.toLowerCase()));
+
+            }).map(item => (<Station key={item.id} station={item}/>))
         };
 
         return (
             <div style={style.container}>
-                <h1>Stations</h1>
+                <h1>Refueling Stations</h1>
                 <Card style={style.card}>
-                    <CardHeader title="Create a new station"/>
+                    <CardHeader title="Create a new Refueling Station"/>
                     <CardText>
                     <form>
                         <TextField style={style.input} ref="newStation" hintText="New station name" />
-                        <RaisedButton onClick={this.handleSubmit.bind(this)}>AddStation</RaisedButton>
+                        <RaisedButton onClick={this.handleSubmit}>Add Station</RaisedButton>
                     </form>
                     </CardText>
                 </Card>
-                
+                <ListItem style={style.searchItem} disabled={true} leftIcon={<ActionSearch style={style.icon}/>} children={<TextField style={style.input} value={this.state.filterValue} onChange={this.handleFilterChange} hintText="Filter stations by soda flavor" />}/>
                 {renderStations()}
             </div>
         );

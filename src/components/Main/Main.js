@@ -17,10 +17,10 @@ class Main extends Component {
         return (
             <Paper style={style.paper} zDepth={3}>
                 <Tabs>
-                    <Tab label="Stations" >
+                    <Tab label="Refueling Stations" >
                         <StationList/>
                     </Tab>
-                    <Tab label="Flavors" >
+                    <Tab label="Soda Flavors" >
                         <FlavorList />
                     </Tab>
                 </Tabs>

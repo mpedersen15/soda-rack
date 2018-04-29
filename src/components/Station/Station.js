@@ -6,6 +6,7 @@ import { List, ListItem } from 'material-ui/List';
 import FlatButton from 'material-ui/FlatButton';
 import Subheader from 'material-ui/Subheader';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
+import MapsLocalDrink from 'material-ui/svg-icons/maps/local-drink';
 const style = {
     card: {
         marginBottom: 20,
@@ -28,10 +29,12 @@ class Station extends Component {
         const renderFlavors = () => {
             const { flavors } = this.props.station;
             if (flavors.length) {
+
                 return flavors.map((flavor, index) => {
-                    return <ListItem disabled={true} key={index} primaryText={flavor.name} />
-                    // return <li key={index}>{flavor.name}</li>
+                    return <ListItem disabled={true} key={index} primaryText={flavor.name} leftIcon={<MapsLocalDrink/>} />
                 });
+            } else {
+                return <p>No soda flavors added to this station. Edit station to add flavors.</p>
             }
             
         }
