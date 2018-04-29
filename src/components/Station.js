@@ -9,23 +9,6 @@ import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 
 import FlavorList from './FlavorList';
 
-const style = {
-    card: {
-        marginBottom: 20,
-        position: 'relative'
-    },
-    button: {
-        position: 'absolute',
-        top: 5,
-        right: 5,
-        minWidth: 36
-    },
-    link: {
-        display: 'block',
-        paddingTop: 5
-    }
-}
-
 class Station extends Component {
     render() {
         const renderFlavors = () => {
@@ -39,7 +22,7 @@ class Station extends Component {
         }
 
         return (
-            <Card style={style.card}>
+            <Card className="station-card">
                 <CardHeader title={this.props.station.name} />
                 <CardText className="card-content">
                     <List>
@@ -49,10 +32,10 @@ class Station extends Component {
                 </CardText>
 
                 <FlatButton
-                style={style.button}
+                className="edit-button"
                 children={
                     <Link 
-                        style={style.link} 
+                        className="edit-button__link"
                         key={this.props.station.id} 
                         to={`/stations/edit/${this.props.station.id}`}
                     >

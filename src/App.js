@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
+import './App.css';
 import StationEditList from './containers/EditStation';
 import Main from './components/Main';
 import { store } from './store';

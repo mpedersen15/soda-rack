@@ -12,31 +12,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 import { updateStation } from '../actions';
 import FlavorList from '../components/FlavorList';
-const style = {
-    paper: {
-        maxWidth: 400,
-        margin: '20px auto'
-    },
-    content: {
-        padding: 20
-    },
-    link: {
-        textDecoration: 'none',
-        color: 'inherit',
-        display: 'block'
-    },
-    bar: {
-        height: 48,
-        lineHeight: 48
-    },
-    barText: {
-        height: 48,
-        lineHeight: '48px',
-        fontSize: 14,
-        fontWeight: 500,
-        textTransform: 'uppercase'
-    }
-};
+
 class EditStation extends Component {
 
     handleAdd(flavor) {
@@ -46,15 +22,12 @@ class EditStation extends Component {
     }
 
     render() {
-        // console.log('Edit Station', this.props);
         const { station, unavailableFlavors } = this.props;
 
         const renderAvailableFlavors = () => {
             if (!station.flavors.length) { return <p>There are no flavors at this station. Add flavors below or visit the Soda Flavors tab to add new flavors.</p>}
 
             return <FlavorList showFilter={false} flavors={station.flavors} />
-            // return station.flavors.map((flavor, i) => (<ListItem key={'avail-'+i} disabled={true} primaryText={flavor.name} leftIcon={<MapsLocalDrink />} />));
-            // return station.flavors.map((flavor, i) => (<ListItem key={i}>{flavor.name} </ListItem>));
         }
 
         const renderUnavailableFlavors = () => {
@@ -68,12 +41,11 @@ class EditStation extends Component {
                     rightIconButton={<IconButton tooltip="Add flavor to station" onClick={() => this.handleAdd(flavor)}><ContentAdd /></IconButton>}
                 />
             ));
-            // return unavailableFlavors.map((flavor, i) => (<li key={i}>{flavor.name} <button onClick={() => this.handleAdd(flavor)}>Add</button></li>));
         }
 
         return (
-            <Paper style={style.paper} zDepth={3}>
-                <AppBar style={style.bar} showMenuIconButton={false} title={<div style={style.barText}>Edit {station.name}</div>} />
+            <Paper className="paper" zDepth={3}>
+                <AppBar className="bar" showMenuIconButton={false} title={<div className="bar__text">Edit {station.name}</div>} />
                 <div className="card-content">
                     <List>
                         <Subheader>Sodas available at this station:</Subheader>
@@ -85,7 +57,7 @@ class EditStation extends Component {
                         {renderUnavailableFlavors()}
                     </List>
                     <p style={{textAlign: 'right'}}>
-                        <FlatButton children={<Link key={'done-link'}style={style.link} to="/">Done</Link>}/>
+                        <FlatButton children={<Link key={'done-link'} className="button-link" to="/">Done</Link>}/>
                     </p>
                     
                 </div>
@@ -96,7 +68,6 @@ class EditStation extends Component {
 }
 
 const mapStateToProps = (state, ownProps) =>{
-    // console.log('State', state, 'own props', ownProps);
     const unpopulatedStation = state.stations.find(station => station.id === parseInt(ownProps.match.params.id, 10));
     return {
         station: { 

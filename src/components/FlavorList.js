@@ -4,30 +4,6 @@ import { List, ListItem } from 'material-ui/List';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 
-
-
-/* const style = {
-    container: {
-        padding: '0 20px 20px 20px'
-    },
-    input: {
-        display: 'block'
-    },
-    card: {
-        marginBottom: 20
-    },
-    icon: {
-        marginTop: 27
-    },
-    searchItem: {
-        padding: '0px 16px 16px 50px'
-    },
-    cardText: {
-        padding: '0 16px'
-    }
-    
-}; */
-
 class FlavorList extends Component {
     constructor(props) {
         super(props);
