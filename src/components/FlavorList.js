@@ -21,9 +21,11 @@ class FlavorList extends Component {
 
     render() {
         const renderFlavors = () => {
-            return this.props.flavors
-                .filter(flavor => flavor.name.toLowerCase().includes(this.state.filterValue.toLowerCase()))
-                .map(item => (<Flavor key={item.id} flavor={item}/>));
+            const flavorsToRender = this.props.flavors.filter(flavor => flavor.name.toLowerCase().includes(this.state.filterValue.toLowerCase()));
+            if (flavorsToRender.length) {
+                return flavorsToRender.map(item => (<Flavor key={item.id} flavor={item}/>));
+            } 
+            return <p>There are no flavors available for Refueling Stations. Add flavors with the form above.</p>
         };
     
         return (

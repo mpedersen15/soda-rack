@@ -23,15 +23,16 @@ export class StationList extends Component {
 
     render() {
         const renderStations = () => {
-            if (this.props.stations.length) {
-                return this.props.stations.filter(station => {
-                        if (!this.state.filterValue) { return true; }
-        
-                        return station.flavors.some(flavor => flavor.name.toLowerCase().includes(this.state.filterValue.toLowerCase()));
-        
-                    }).map(item => (<Station key={item.id} station={item}/>));   
+            const stationsToRender = this.props.stations.filter(station => {
+                if (!this.state.filterValue) { return true; }
+
+                return station.flavors.some(flavor => flavor.name.toLowerCase().includes(this.state.filterValue.toLowerCase()));
+
+            });
+            if (stationsToRender.length) {
+                return stationsToRender.map(item => (<Station key={item.id} station={item}/>));   
             } else {
-                return (<p>There no Refueling Stations created. Use the form above to create the first!</p>);
+                return (<p>Either no Refueling Stations exist or none match your search criteria. Use the form above to create a station or update your search criteria!</p>);
             }
             
         };
