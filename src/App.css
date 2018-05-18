@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .paper {
   max-width: 400px;
   margin: 20px auto;
@@ -59,4 +63,45 @@
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.header__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.header__item {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+}
+
+.header__link {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  display: block;
+}
+
+.header__link:hover {
+  background-color: #eee;
+}
+
+.header__link:active {
+  color: inherit;
+  background-color: #ddd;
+}
+
+.header__link--active {
+  background-color: #e9e9e9;
 }

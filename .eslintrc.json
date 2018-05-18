@@ -1,3 +1,10 @@
 {
-    "extends": "standard"
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
+    "env": {
+        "es6": true
+    },
+    "extends": ["airbnb", "plugin:jsx-a11y/recommended"],
+    "plugins": ["react", "jsx-ally", "import"]
 }
