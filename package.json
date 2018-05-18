@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-eslint": "^8.2.3",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.11.0",
