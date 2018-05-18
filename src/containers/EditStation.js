@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import Paper from 'material-ui/Paper';
-import AppBar from 'material-ui/AppBar';
 import Subheader from 'material-ui/Subheader';
 import { List, ListItem } from 'material-ui/List';
 import MapsLocalDrink from 'material-ui/svg-icons/maps/local-drink';
@@ -32,6 +30,9 @@ class EditStation extends Component {
 
         const renderUnavailableFlavors = () => {
             if (!unavailableFlavors.length) { return <p>There are no unavailble flavors. Visit the Soda Flavors tab to add new flavors.</p>}
+           
+            // return <FlavorList showFilter={true} flavors={unavailableFlavors}/>
+
             return unavailableFlavors.map((flavor, i) => (
                 <ListItem
                     key={'unavail-'+i}
@@ -44,25 +45,22 @@ class EditStation extends Component {
         }
 
         return (
-            <Paper className="paper" zDepth={3}>
-                <AppBar className="bar" showMenuIconButton={false} title={<div className="bar__text">Edit {station.name}</div>} />
-                <div className="card-content">
-                    <List>
-                        <Subheader>Sodas available at this station:</Subheader>
-                        {renderAvailableFlavors()}
-                    </List>
-
-                    <List>
-                    <Subheader>Sodas NOT available at this station:</Subheader>
-                        {renderUnavailableFlavors()}
-                    </List>
-                    <p style={{textAlign: 'right'}}>
-                        <FlatButton children={<Link key={'done-link'} className="button-link" to="/">Done</Link>}/>
-                    </p>
+            <div className="tab-container">
+                <h3>Edit {station.name}</h3>
+                <List>
+                    <Subheader>Sodas available at this station:</Subheader>
+                    {renderAvailableFlavors()}
                     
-                </div>
-                
-            </Paper>
+                </List>
+
+                <List>
+                <Subheader>Sodas NOT available at this station:</Subheader>
+                    {renderUnavailableFlavors()}
+                </List>
+                <p style={{textAlign: 'right'}}>
+                    <FlatButton children={<Link key={'done-link'} className="button-link" to="/">Done</Link>}/>
+                </p>
+            </div>
         );
     }
 }
