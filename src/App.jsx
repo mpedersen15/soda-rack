@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Route, Redirect, Switch } from 'react-router-dom';
 import Paper from 'material-ui/Paper';
 
 import './App.css';
-import StationEditList from './containers/EditStation';
 import Header from './components/Header';
 import FlavorContainer from './containers/FlavorContainer';
-import StationContainer from './containers/StationContainer';
 import StationRoute from './containers/StationRoute';
 
 
 class App extends Component {
   render() {
-
     return (
       <div>
         <Paper className="paper" zDepth={3}>
