@@ -32,4 +32,16 @@ describe('Action generator tests', () => {
     
   });
 
+  describe('updateStation', () => {
+    it('should return the correct updateStation action', () => {
+      const expectedAction = {
+        type: 'UPDATE_STATION',
+        stationId: 1,
+        flavorId: 2
+      };
+
+      expect(updateStation(expectedAction.stationId, expectedAction.flavorId)).toEqual(expectedAction);
+    });
+  });
+
 });
